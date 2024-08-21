@@ -85,9 +85,9 @@ if ingredients_list: #if is not null: then do this
 
  
 
-        st.subheader(fruit_chosen + 'Nutrition Information')
+        st.subheader(fruit_chosen + ' Nutrition Information')
 
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit" + search_on)
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + search_on)
 
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 
