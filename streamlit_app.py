@@ -31,9 +31,21 @@ cnx = st.connection("snowflake")
 
 session = cnx.session()
 
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'), col('SEARCH_ON'))
 
 #st.dataframe(data=my_dataframe, use_container_width=True)
+
+#st.stop()
+
+ 
+
+# Convert the Snowpark Dataframe to a Pandas Dataframe so we can use the LOC function
+
+pd_df = my_dataframe.to_pandas()
+
+st.dataframe(pd_df)
+
+st.stop()
 
  
 
@@ -66,9 +78,8 @@ if ingredients_list: #if is not null: then do this
         ingredients_string += fruit_chosen + ' '
 
         st.subheader(fruit_chosen + 'Nutrition Information')
-        
 
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_chosen)
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon" + fruit_chosen)
 
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 
@@ -103,3 +114,8 @@ if ingredients_list: #if is not null: then do this
  
 
         st.success('Your Smoothie is ordered!', icon="✅")
+
+ 
+
+ 
+
