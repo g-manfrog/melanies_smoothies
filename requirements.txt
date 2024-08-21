@@ -1,1 +1,5 @@
-Create a second file in your Repo called requirements.txt. Copy the contents of the environment.yaml file into the requirements.txt file and save the file in your repo. 
+# requirements.txt
+
+snowflake-snowpark-python
+
+streamlit
